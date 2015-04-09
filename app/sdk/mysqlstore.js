@@ -63,15 +63,17 @@ var MySqlStore = module.exports = klass(function () {
 
   getCredentials : function () {
 
-    if(process.env.STACKATO_SERVICES) {
-      var connection = JSON.parse(process.env.STACKATO_SERVICES);
-      var dbConnection =  connection['hpcloudrecruit-db'];
+	  console.log(process.env);
+    if(process.env.VCAP_SERVICES) {
+      var connection = JSON.parse(process.env.VCAP_SERVICES);
+      //var dbConnection =  connection['mysql']['hpcloudrecruit-db'][0];
+      var dbConnectionCredentials =  connection['mysql'][0].credentials;
       return {
-        host: dbConnection.host,
-        port : dbConnection.port,
-        user : dbConnection.user,
-        password : dbConnection.password,
-        database : dbConnection.name
+        host: dbConnectionCredentials.host,
+        port : dbConnectionCredentials.port,
+        user : dbConnectionCredentials.user,
+        password : dbConnectionCredentials.password,
+        database : dbConnectionCredentials.name
       }
     }
     else {

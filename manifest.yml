@@ -5,7 +5,7 @@ applications:
   services:
     hpcloudrecruit-db:
       type: mysql
-  stackato:
+  helion:
     hooks:
       post-staging:
          - dbshell < setup/createdb.sql

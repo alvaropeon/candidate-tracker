@@ -19,10 +19,11 @@
 -- Table structure for table `Candidate`
 --
 
-DROP TABLE IF EXISTS `Candidate`;
+/*DROP TABLE IF EXISTS `Candidate`;*/
+
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Candidate` (
+CREATE TABLE if not exists `Candidate` (
   `CandidateId` int(11) NOT NULL AUTO_INCREMENT,
   `FirstName` varchar(500) DEFAULT NULL,
   `LastName` varchar(500) DEFAULT NULL,
@@ -50,7 +51,7 @@ CREATE TABLE `Candidate` (
 -- Dumping data for table `Candidate`
 --
 
-LOCK TABLES `Candidate` WRITE;
+/* LOCK TABLES `Candidate` WRITE;
 /*!40000 ALTER TABLE `Candidate` DISABLE KEYS */;
 INSERT INTO `Candidate` VALUES (1,'Bob','Peterson','Very talented UX designer','bob_peterson@hp.com',1,1,1,1,CURDATE() + INTERVAL 12 DAY,1, 'The best in the biz');
 INSERT INTO `Candidate` VALUES (2,'Mary','Johnson','Star cloud dev','mary.johnson@example.com',1,1,1,1,CURDATE() + INTERVAL 12 DAY,1, 'The best in the biz');
@@ -58,6 +59,7 @@ INSERT INTO `Candidate` VALUES (3,'John','Smith','Experienced network engineer',
 INSERT INTO `Candidate` VALUES (4,'Jane','Jones','Experienced network engineer','jane.jones@example.com',1,1,1,1,CURDATE() + INTERVAL 12 DAY,3, 'The best in the biz');
 /*!40000 ALTER TABLE `Candidate` ENABLE KEYS */;
 UNLOCK TABLES;
+*/
 
 --
 -- Table structure for table `Role`
