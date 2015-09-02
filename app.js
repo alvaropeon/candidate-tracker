@@ -179,13 +179,8 @@ function downloadPassPhrase() {
 
 	if(!process.env.CryptoKey) {
 		console.log('Encryption Key location not given, cannot download encryption key!');
-		console.log('Hard coding the passphrase');
-		process.env.passPhrase = "AAAAB3NzaC1yc2EAAAABJQAAAQEAty86+VzjC8gPqdgWk4+CY4hEUNXlSWsTtY+f
-        vHux89DqnMjNSFbBSmYYyV3pWAIlOPLuDGc1VdE79YcDZsspzyB0usuSZgH3u5AP
-        yuMuIBtF078oaukgotBn/EzGYPK+bBfgYZPPLUmF+sZeI4FNQvl+6nsjtxBy4Z5n
-        4yrUjFVeuAuhsUz0OG7MVZtSQw7VxODd67RJk+2QZhHEZ7WmayR1WgvzRrGqJq8N
-        c15qznubpmbijnrdUx7yCpXbdN8K3RefbHC56kd3VZ6cSyxSaNZsrA5olB0mwWze
-        ugFTnv6pQFqfh0yqwiekuEX0CGcHcANi+D5lgZ+eoYyg10uBqQ==";
+		console.log('Hard coding the passphrase- only for demo purposes.  You would never do this with a real app');
+		process.env.passPhrase = "AAAAB3NzaC1yc2EAAAABJQAAAQEAty86+VzjC8gPqdgWk4+CY4hEUNXlSWsTtY+fvHux89DqnMjNSFbBSmYYyV3pWAIlOPLuDGc1VdE79YcDZsspzyB0usuSZgH3u5APyuMuIBtF078oaukgotBn/EzGYPK+bBfgYZPPLUmF+sZeI4FNQvl+6nsjtxBy4Z5n4yrUjFVeuAuhsUz0OG7MVZtSQw7VxODd67RJk+2QZhHEZ7WmayR1WgvzRrGqJq8Nc15qznubpmbijnrdUx7yCpXbdN8K3RefbHC56kd3VZ6cSyxSaNZsrA5olB0mwWzeugFTnv6pQFqfh0yqwiekuEX0CGcHcANi+D5lgZ+eoYyg10uBqQ==";
 		return;
 	}
   else
