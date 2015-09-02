@@ -175,37 +175,46 @@ if (!module.parent) {
 
 function downloadPassPhrase() {
 
+  var keyLocation;
+
 	if(!process.env.CryptoKey) {
 		console.log('Encryption Key location not given, cannot download encryption key!');
-		console.log('Using default key...');
-		process.env.passPhrase = "batman!";
+		console.log('Hard coding the passphrase');
+		process.env.passPhrase = "AAAAB3NzaC1yc2EAAAABJQAAAQEAty86+VzjC8gPqdgWk4+CY4hEUNXlSWsTtY+f
+        vHux89DqnMjNSFbBSmYYyV3pWAIlOPLuDGc1VdE79YcDZsspzyB0usuSZgH3u5AP
+        yuMuIBtF078oaukgotBn/EzGYPK+bBfgYZPPLUmF+sZeI4FNQvl+6nsjtxBy4Z5n
+        4yrUjFVeuAuhsUz0OG7MVZtSQw7VxODd67RJk+2QZhHEZ7WmayR1WgvzRrGqJq8N
+        c15qznubpmbijnrdUx7yCpXbdN8K3RefbHC56kd3VZ6cSyxSaNZsrA5olB0mwWze
+        ugFTnv6pQFqfh0yqwiekuEX0CGcHcANi+D5lgZ+eoYyg10uBqQ==";
 		return;
 	}
+  else
+  {
+  	var keyLocation = url.parse(process.env.CryptoKey);
 
-	var keyLocation = url.parse(process.env.CryptoKey);
+  	var options = {
+  		host: keyLocation.host,
+  		port: keyLocation.port,
+  		path: keyLocation.path
+  	};
 
-	var options = {
-		host: keyLocation.host,
-		port: keyLocation.port,
-		path: keyLocation.path
-	};
+  	https.get(options, function(resp){
+  		console.log('Downloading encryption key...');
+  		var data = '';
 
-	https.get(options, function(resp){
-		console.log('Downloading encryption key...');
-		var data = '';
+  		resp.on('data', function(chunk){
+  			data += chunk;
+  		});
 
-		resp.on('data', function(chunk){
-			data += chunk;
-		});
+  		resp.on('end', function() {
+  			process.env.passPhrase = data;
+  			console.log('Encryption key downloaded');
+  		});
 
-		resp.on('end', function() {
-			process.env.passPhrase = data;
-			console.log('Encryption key downloaded');
-		});
-
-	}).on("error", function(e){
-		console.log("Encryption key could not be downloaded: " + e.message);
-	});
+  	}).on("error", function(e){
+  		console.log("Encryption key could not be downloaded: " + e.message);
+  	});
+  }
 }
 
 module.exports = app;

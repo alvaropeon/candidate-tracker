@@ -15,5 +15,4 @@ applications:
     - .gitignore
     - devsetup.sh
     - README.md
-    env:
-      CryptoKey: "https://region-a.geo-1.objects.hpcloudsvc.com/v1/10540741651152/TrackerStore/data.key?temp_url_sig=10540741651152%3AE4WLSU5M7E7DU3BV973C%3A63cee81174292d6fb68c3c0def3572df3537afea&temp_url_expires=1729970636"
+
