@@ -2,9 +2,6 @@ applications:
 - name: hpcloudrecruit
   mem: 256M
   instances: 1
-  services:
-    - hpcloudrecruit-db:
-      type: mysql
   stackato:
     hooks:
       post-staging:
