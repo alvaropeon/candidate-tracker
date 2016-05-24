@@ -1,15 +1,6 @@
 applications:
-- name: hpcloudrecruit
+- name: candidatetracker
   mem: 256M
   instances: 1
-  stackato:
-    hooks:
-      post-staging:
-         - dbshell < setup/createdb.sql
-    ignores:
-    - .git
-    - .venv
-    - .gitignore
-    - devsetup.sh
-    - README.md
+
 
