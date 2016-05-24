@@ -2,10 +2,7 @@ applications:
 - name: hpcloudrecruit
   mem: 256M
   instances: 1
-  services:
-    hpcloudrecruit-db:
-      type: mysql
-  helion:
+  stackato:
     hooks:
       post-staging:
          - dbshell < setup/createdb.sql
