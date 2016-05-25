@@ -77,12 +77,42 @@ var CandidateStore = module.exports = klass(function () {
         dec.push( self.__decryptCandidate(can));
       });
 
-      done( { results : dec});
+      done(null, { results : dec});
     },
 
+    getRecruiters: function (done) {
+      return done(null, []);
+    },
+
+    getPersons: function (done) {
+      return done(null, []);
+    },
+    
+    getStates: function (done){
+      done(null, {
+        results: [
+          {
+            StageId: 1,
+            Name : 'Lead'
+          },
+          {
+            StageId: 2,
+            Name : 'Phone Screen'
+          },
+          {
+            StageId: 3,
+            Name : 'Interview'
+          },
+          {
+            StageId: 4,
+            Name : 'Offer'
+          }
+        ]
+      })
+    },
 
     getPositions  : function (done) {
-      done(
+      done(null,
         { results : [
           { PositionId : 0 , Name :"Program Manager"},
           { PositionId : 1 , Name :"Senior SDE"},

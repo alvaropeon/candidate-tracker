@@ -1,6 +1,6 @@
 var BaseRes = require('./base_res')
   , _ = require('underscore')
-  , CandidateStore = require('../sdk/sqlcandidatestore.js')
+  , CandidateStore = require('../sdk/candidatestore.js')
   , csv = require('fast-csv')
   , fs = require('fs');
 
@@ -9,7 +9,7 @@ var CandidateRest = module.exports = BaseRes.extend({
     app.get('/',  _.bind(this.home, this));
     app.get('/login', _.bind(this.login, this));
     //Note: To add auth back- add "this.ensureAuthenticated,"" as parameter
-    //app.post('/load', this.ensureAuthenticated, _.bind(this.load, this));
+    //app.post('/load', this.ensureAuthentihcated, _.bind(this.load, this));
 	  app.post('/load', _.bind(this.load, this));
 	  app.get('/import',  _.bind(this.upload, this));
     app.get('/candidate/add',  _.bind(this.showCandidateAdd, this));
@@ -95,9 +95,9 @@ var CandidateRest = module.exports = BaseRes.extend({
 	 store.getPositions( function (err, positions) {
 	   var pos = positions;
 
-	   store.getRecruiters( function(err, recruiters) {
+	   store.getRecruiters(function(err, recruiters) {
 	     var recs = recruiters;
-	     store.getPersons( function(err, persons) {
+	     store.getPersons(function(err, persons) {
 	       var pers = persons;
 	       res.render('app/adduser' , {positions : pos,  recruiters : recs, owners : pers });
 	     });
@@ -129,14 +129,14 @@ var CandidateRest = module.exports = BaseRes.extend({
 
   load: function (req, res){
 	console.log(req.files);
-	
-	
+
+
 	var stream = fs.createReadStream(req.files.csvinput.path);
-	
+
 	csv.fromStream(stream, {headers : true})
 		.on("data", function(data){
 			console.log(data);
-			
+
 		})
 		.on("end", function(){
 			console.log("done");
@@ -146,13 +146,14 @@ var CandidateRest = module.exports = BaseRes.extend({
   },
 
   home : function (req,res) {
+    console.log("Loading home page");
     var store = new CandidateStore();
     store.getCandidates( function (err, candidates) {
       var filtered = candidates.results;
       if(req.query.rec && req.query.rec != "all"){
         console.log("filter: " +req.query.rec);
-        filtered = _.filter(candidates.results, function (can){ 
-          return can.Recruiter_PersonId == req.query.rec; 
+        filtered = _.filter(candidates.results, function (can){
+          return can.Recruiter_PersonId == req.query.rec;
         });
       }
       if(req.query.own && req.query.own != "all"){
@@ -177,12 +178,11 @@ var CandidateRest = module.exports = BaseRes.extend({
       });
 
       store.getStates( function (err, states) {
-        var all_states = states;
-        store.getRecruiters( function (err, recruiters) {
-          store.getPersons( function (err, persons) {
-            console.log(recruiters);
-            console.log(persons);
-            res.render('app/home' , { persons : persons, recruiters : recruiters, candidates : grouped, all_states : all_states });
+        var all_states = states.results;
+        store.getRecruiters(function (err, recruiters) {
+          store.getPersons(function (err, persons) {
+            var options = { persons : persons, recruiters : recruiters, candidates : grouped, all_states : all_states };
+            res.render('app/home' , options);
           });
         });
       });

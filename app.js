@@ -162,15 +162,15 @@ function populateDb(){
           port : 3306,
           user : 'helionci',
           password: 'fairgate',
-          database : 'hpcloudrecruiting'  
+          database : 'hpcloudrecruiting'
           };
     }
     var connection = mysql.createConnection(creds);
     connection.connect(function(err){
       if(!err) {
-          console.log("Database is connected ... nn");    
+          console.log("Database is connected ... nn");
       } else {
-          console.log("Error connecting database ... nn");    
+          console.log("Error connecting database ... nn");
       }
     });
     //World's hackiest thing below
@@ -218,7 +218,7 @@ if (!module.parent) {
   console.log('Hard coding the passphrase- only for demo purposes.  You would never do this with a real app');
   process.env.passPhrase = "AAAAB3NzaC1yc2EAAAABJQAAAQEAty86+VzjC8gPqdgWk4+CY4hEUNXlSWsTtY+fvHux89DqnMjNSFbBSmYYyV3pWAIlOPLuDGc1VdE79YcDZsspzyB0usuSZgH3u5APyuMuIBtF078oaukgotBn/EzGYPK+bBfgYZPPLUmF+sZeI4FNQvl+6nsjtxBy4Z5n4yrUjFVeuAuhsUz0OG7MVZtSQw7VxODd67RJk+2QZhHEZ7WmayR1WgvzRrGqJq8Nc15qznubpmbijnrdUx7yCpXbdN8K3RefbHC56kd3VZ6cSyxSaNZsrA5olB0mwWzeugFTnv6pQFqfh0yqwiekuEX0CGcHcANi+D5lgZ+eoYyg10uBqQ==";
   //I'm so sorry for this- just trying to get some data initialized, quickly.
-  populateDb();
+  //populateDb();
   app.listen(PORT);
   console.log('App started on port: ' + PORT);
 }
