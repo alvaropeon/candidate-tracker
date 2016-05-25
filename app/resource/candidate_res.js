@@ -180,6 +180,8 @@ var CandidateRest = module.exports = BaseRes.extend({
         var all_states = states;
         store.getRecruiters( function (err, recruiters) {
           store.getPersons( function (err, persons) {
+            console.log(recruiters);
+            console.log(persons);
             res.render('app/home' , { persons : persons, recruiters : recruiters, candidates : grouped, all_states : all_states });
           });
         });
