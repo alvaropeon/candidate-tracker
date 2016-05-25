@@ -5,5 +5,3 @@ applications:
   services:
     hpcloudrecruit-db: mysql
 
-
-

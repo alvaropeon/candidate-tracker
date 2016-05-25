@@ -1,6 +1,10 @@
 {
   "name": "express-app",
   "version": "1.0.0",
+   "engines": {
+    "node": "5.8.0",
+    "npm": "3.7.3"
+  },
 
   "dependencies": {
     "klass":  "1.x.x",
