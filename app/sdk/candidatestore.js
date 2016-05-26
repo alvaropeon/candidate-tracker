@@ -81,11 +81,70 @@ var CandidateStore = module.exports = klass(function () {
     },
 
     getRecruiters: function (done) {
-      return done(null, []);
+      var r = {
+        results:
+        [
+          {
+            FirstName : "Phani",
+            LastName : "Raj",
+            tagLine : "Batman",
+          },
+          {
+            FirstName : "Travis",
+            LastName : "Plummer",
+            tagLine : "Hunt Hogs on a Helicopter",
+          }
+        ]
+      };
+      var self = this;
+
+      var enc = [];
+      _.each(r.results, function (can,i ) {
+        enc.push( self.__encryptCandidate(can));
+      });
+
+      var dec = [];
+
+      _.each(enc, function (can,i ) {
+        dec.push( self.__decryptCandidate(can));
+      });
+      console.log("recruiters");
+      console.log(dec);
+      done(null, dec);
     },
 
     getPersons: function (done) {
-      return done(null, []);
+      var r = {
+        results:
+        [
+          {
+            FirstName : "Phani",
+            LastName : "Raj",
+            emailAddress : "foo@bar.com",
+          },
+          {
+            FirstName : "Travis",
+            LastName : "Plummer",
+            emailAddress : "foo@bar.com",
+          }
+        ]
+      };
+
+       var self = this;
+
+      var enc = [];
+      _.each(r.results, function (can,i ) {
+        enc.push( self.__encryptCandidate(can));
+      });
+
+      var dec = [];
+
+      _.each(enc, function (can,i ) {
+        dec.push( self.__decryptCandidate(can));
+      });
+      console.log("persons");
+      console.log(dec);
+      done(null, dec);
     },
     
     getStates: function (done){
@@ -113,13 +172,13 @@ var CandidateStore = module.exports = klass(function () {
 
     getPositions  : function (done) {
       done(null,
-        { results : [
+        [
           { PositionId : 0 , Name :"Program Manager"},
           { PositionId : 1 , Name :"Senior SDE"},
           { PositionId : 2 , Name :"Distinguished Technologist"},
           { PositionId : 3 , Name :"Technical Fellow"},
          ]
-      }
+      
       );
     },
 
