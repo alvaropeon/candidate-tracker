@@ -23,6 +23,7 @@ var CandidateRest = module.exports = BaseRes.extend({
     /* fake add user */
     app.get('/adduser',  _.bind(this.showAddUser, this));
     app.post('/adduser',  _.bind(this.addUser, this));
+    app.post('/resume',  _.bind(this.addResume, this));
 
   },
 
@@ -32,6 +33,11 @@ var CandidateRest = module.exports = BaseRes.extend({
     store.addCandidate(req.body, function (candidate) {
       res.redirect('/');
     });
+  },
+
+    addResume : function (req,res) {
+    var store = new CandidateStore();
+    res.send({});
   },
 
   changeState : function (req,res) {

@@ -1,20 +1,4 @@
-<head>
-<script>
-    $(function(){
-      $("select").prop("selectedIndex",1);
-     // $("#resume").fileinput({'uploadUrl':'/foo'});
-    //   $('#resume').on('filepreupload', function(event, data, previewId, index) {
-    // var form = data.form, files = data.files, extra = data.extra,
-    //     response = data.response, reader = data.reader;
-    // alert('hihi');
-    // console.log('File pre upload triggered');
 
-
-    // });
-  });
-    
-</script>
-</head>
 <div class ="page_header">
   <h1> Add Candidate </h1>
 </div>
@@ -22,20 +6,20 @@
 <form role="form" action ="/candidate/add" method="POST">
   <div class="form-group">
     <label for="inputFirstName">First Name</label>
-    <input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="First Name">
+    <input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="Please enter a first name...">
   </div>
 
   <div class="form-group">
     <label for="inputLastName">Last Name</label>
-    <input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Last Name">
+    <input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Please enter a last name...">
   </div>
   <div class="form-group">
     <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" name ="email" id="exampleInputEmail1" placeholder="Enter email">
+    <input type="email" class="form-control" name ="email" id="exampleInputEmail1" placeholder="Please enter an email address..">
   </div>
   <div class="form-group">
     <label for="inputTagLine">Tag Line</label>
-    <input type="text" class="form-control" name="tagLine" id="inputTagLine" placeholder="Tag Line">
+    <input type="text" class="form-control" name="tagLine" id="inputTagLine" placeholder="Please enter tag line..">
   </div>
   <div class="form-group">
     <label for="inputTagLine">Position</label>
@@ -73,7 +57,7 @@
   </div>
     <div class="form-group">
     <label class="control-label" for="inputTagLine">Resume</label>
-    <input id="resume" type="file" class="file" data-upload-url="/foo" accept="application/pdf,application/octet-stream">
+    <input id="resume" type="file" class="file" data-upload-url="/resume" data-upload-async="true" accept="application/pdf,application/octet-stream">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -114,5 +98,13 @@
 $(function () {
   $("#position").change(onPositionChanged);
   $("#btnSavePosition").click(saveNewPosition);
+  $("select").prop("selectedIndex",1);
+  $("#resume").on('fileuploaded', function(event, data, previewId, index) {
+        var form = data.form, files = data.files, extra = data.extra,
+            response = data.response, reader = data.reader;
+        console.log('File uploaded triggered');
+        console.log('response');
+        console.log(response);
+    }); 
 });
 </script>
