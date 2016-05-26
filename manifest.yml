@@ -1,5 +1,5 @@
 applications:
-- name: candidatetracker
+- name: candidatetracker_alpha
   mem: 256M
   instances: 1
 
