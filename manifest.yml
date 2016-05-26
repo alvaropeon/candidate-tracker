@@ -2,6 +2,4 @@ applications:
 - name: candidatetracker
   mem: 256M
   instances: 1
-  services:
-    - hpcloudrecruit-db
 
