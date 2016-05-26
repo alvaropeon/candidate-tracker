@@ -12,9 +12,11 @@ var CandidateStore = module.exports = klass(function () {
         results:
         [
           {
-            firstName : "Phani",
-            lastName : "Raj",
-            tagLine : "Batman",
+            firstName : "Robert",
+            lastName : "Youngjohns",
+            email: "robert@hpe.com",
+            tagLine : "Running for President in 2016",
+            DueDate : "6/4/2016",
             state : {
               name : "Lead",
               icon : "icon-inbox",
@@ -22,9 +24,11 @@ var CandidateStore = module.exports = klass(function () {
             }
           },
           {
-            firstName : "Travis",
-            lastName : "Plummer",
-            tagLine : "Hunt Hogs on a Helicopter",
+            firstName : "Omri",
+            lastName : "Gazitt",
+            email: "omri@hpe.com",
+            tagLine : "Seattle- the cloud capital of the world",
+            DueDate : "6/9/2016",
             state : {
                 name : "Interview" ,
                 icon : "icon-user",
@@ -32,9 +36,11 @@ var CandidateStore = module.exports = klass(function () {
               }
           },
           {
-            firstName : "Sam",
-            lastName : "Gazitt",
-            tagLine : "Stand up guy",
+            firstName : "Colin",
+            lastName : "Mahoney",
+            email: "colin@hpe.com",
+            DueDate : "6/1/2016",
+            tagLine : "The next American IDOL (on demand)",
               state : {
                 name : "Phone Screen" ,
                 icon : "icon-phone-alt",
@@ -42,9 +48,11 @@ var CandidateStore = module.exports = klass(function () {
               }
           },
           {
-            firstName : "Sam",
-            lastName : "Choi",
-            tagLine : "So, we're writing this thing in something no one has any experience in?",
+            firstName : "Manav",
+            lastName : "Mishra",
+            email: "manav@hpe.com",
+            DueDate : "6/24/2016",
+            tagLine : "Go big or go home",
               state : {
                 name : "Offer" ,
                 icon : "icon-us",
@@ -52,9 +60,11 @@ var CandidateStore = module.exports = klass(function () {
               }
           },
           {
-            firstName : "Wayne",
-            lastName : "Foley",
-            tagLine : "What the Foley?!",
+            firstName : "Phani",
+            lastName : "Raju",
+            email: "phani@hpe.com",
+            DueDate : "6/2/2016",
+            tagLine : "I can build anything in a weekend",
               state : {
                 name : "Lead" ,
                 icon : "icon-inbox",
@@ -85,8 +95,8 @@ var CandidateStore = module.exports = klass(function () {
         results:
         [
           {
-            FirstName : "Phani",
-            LastName : "Raj",
+            FirstName : "Betty",
+            LastName : "Jones",
             tagLine : "Batman",
           },
           {
@@ -118,9 +128,9 @@ var CandidateStore = module.exports = klass(function () {
         results:
         [
           {
-            FirstName : "Phani",
-            LastName : "Raj",
-            emailAddress : "foo@bar.com",
+            FirstName : "Vaishali",
+            LastName : "Gupta",
+            emailAddress : "vaishi@bar.com",
           },
           {
             FirstName : "Travis",

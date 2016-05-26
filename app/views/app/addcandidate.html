@@ -1,3 +1,20 @@
+<head>
+<script>
+    $(function(){
+      $("select").prop("selectedIndex",1);
+     // $("#resume").fileinput({'uploadUrl':'/foo'});
+    //   $('#resume').on('filepreupload', function(event, data, previewId, index) {
+    // var form = data.form, files = data.files, extra = data.extra,
+    //     response = data.response, reader = data.reader;
+    // alert('hihi');
+    // console.log('File pre upload triggered');
+
+
+    // });
+  });
+    
+</script>
+</head>
 <div class ="page_header">
   <h1> Add Candidate </h1>
 </div>
@@ -7,6 +24,7 @@
     <label for="inputFirstName">First Name</label>
     <input type="text" class="form-control" name="firstName" id="inputFirstName" placeholder="First Name">
   </div>
+
   <div class="form-group">
     <label for="inputLastName">Last Name</label>
     <input type="text" class="form-control" name="lastName" id="inputLastName" placeholder="Last Name">
@@ -52,6 +70,10 @@
         <%})%>
       <% } %>
     </select>
+  </div>
+    <div class="form-group">
+    <label class="control-label" for="inputTagLine">Resume</label>
+    <input id="resume" type="file" class="file" data-upload-url="/foo" accept="application/pdf,application/octet-stream">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
