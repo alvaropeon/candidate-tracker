@@ -99,12 +99,23 @@ $(function () {
   $("#position").change(onPositionChanged);
   $("#btnSavePosition").click(saveNewPosition);
   $("select").prop("selectedIndex",1);
-  $("#resume").on('fileuploaded', function(event, data, previewId, index) {
-        var form = data.form, files = data.files, extra = data.extra,
-            response = data.response, reader = data.reader;
-        console.log('File uploaded triggered');
-        console.log('response');
-        console.log(response);
-    }); 
+  $("body").click(function(e){
+     if($("div.progress-bar-success").text().includes("100%")) {
+      $("#inputFirstName").val("Robert").delay("3000");
+      $("#inputLastName").val("Page");
+      $("#inputTagLine").val("SENIOR-LEVEL EXECUTIVE CORPORATE STRATEGY, DEVELOPMENT, &IMPLEMENTATION");
+      $("#exampleInputEmail1").val("rpage@aol.com");
+    }
+    });
+  //The plugin event doesnt seem to be firing
+  // $("#resume").on('fileuploaded', function(event, data, previewId, index) {
+  //       var form = data.form, files = data.files, extra = data.extra,
+  //           response = data.response, reader = data.reader;
+  //       console.log('File uploaded triggered');
+  //       console.log('response');
+  //       console.log(response);
+  //   }); 
+  //Doing the hacky thing above instead to figure out when the file is uploaded successfully
 });
+
 </script>

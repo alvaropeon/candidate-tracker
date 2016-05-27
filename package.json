@@ -17,6 +17,8 @@
     "passport" :"x",
     "express-session" :"x",
     "passport-local" :"x",
+    "querystring" : "x",
+    "http" : "x",
 	"fast-csv" :"x",
 	"connect-busboy" :"x",
 	"reformed" :"x",

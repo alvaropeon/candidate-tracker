@@ -2,6 +2,8 @@ var BaseRes = require('./base_res')
   , _ = require('underscore')
   , CandidateStore = require('../sdk/candidatestore.js')
   , csv = require('fast-csv')
+  , http = require('http')
+  , querystring = require('querystring')
   , fs = require('fs');
 
 var CandidateRest = module.exports = BaseRes.extend({
@@ -24,6 +26,7 @@ var CandidateRest = module.exports = BaseRes.extend({
     app.get('/adduser',  _.bind(this.showAddUser, this));
     app.post('/adduser',  _.bind(this.addUser, this));
     app.post('/resume',  _.bind(this.addResume, this));
+    app.post('/parseresume',  _.bind(this.parseResume, this));
 
   },
 
@@ -35,7 +38,7 @@ var CandidateRest = module.exports = BaseRes.extend({
     });
   },
 
-    addResume : function (req,res) {
+  parseResume : function (req,res) {
     var store = new CandidateStore();
     res.send({});
   },
@@ -133,6 +136,46 @@ var CandidateRest = module.exports = BaseRes.extend({
     });
   },
 
+   addResume : function (req,res) {
+
+    
+        var post_data = querystring.stringify({
+            'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
+            'output_format': 'json',
+            'output_info': 'compiled_code',
+            'warning_level' : 'QUIET',
+            'url' : 'https://drive.google.com/uc?export=download&id=0B2I7CyCRi87KY09nQjYyR2dhelk',
+            'apikey' : '9cdc2f3a-361e-4c5f-bd8d-63532ee6fc4b'
+        });
+
+        // An object of options to indicate where to post to
+        var post_options = {
+            host: 'api.havenondemand.com',
+            port: '80',
+            path: '/1/api/sync/extracttext/v1',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(post_data)
+            }
+        };
+        var content = "";
+        // Set up the request
+        var post_req = http.request(post_options, function(response) {
+            response.setEncoding('utf8');
+            response.on('data', function (chunk) {
+                console.log('Response: ' + chunk);
+            });
+            response.on('error', function(e){console.log(e)});
+        });
+
+        // post the data
+        post_req.write(post_data);
+        post_req.end();
+        res.send({'content':content});
+    
+  },
+
   load: function (req, res){
 	console.log(req.files);
 
@@ -152,7 +195,6 @@ var CandidateRest = module.exports = BaseRes.extend({
   },
 
   home : function (req,res) {
-    console.log("Loading home page");
     var store = new CandidateStore();
     store.getCandidates( function (err, candidates) {
       var filtered = candidates.results;
