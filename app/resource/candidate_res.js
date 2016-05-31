@@ -39,8 +39,41 @@ var CandidateRest = module.exports = BaseRes.extend({
   },
 
   parseResume : function (req,res) {
-    var store = new CandidateStore();
-    res.send({});
+var vcap_services = JSON.parse(process.env.VCAP_SERVICES)
+var post_data = querystring.stringify({
+            'compilation_level' : 'ADVANCED_OPTIMIZATIONS',
+            'output_format': 'json',
+            'output_info': 'compiled_code',
+            'warning_level' : 'QUIET',
+            'file' : req.files[0],
+            'apikey' : vcap_services.haventext.apikey
+        });
+
+        // An object of options to indicate where to post to
+        var post_options = {
+            host: 'api.havenondemand.com',
+            port: '80',
+            path: '/1/api/sync/extracttext/v1',
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(post_data)
+            }
+        };
+        var content = "";
+        // Set up the request
+        var post_req = http.request(post_options, function(response) {
+            response.setEncoding('utf8');
+            response.on('data', function (chunk) {
+                console.log('Response: ' + chunk);
+            });
+            response.on('error', function(e){console.log(e)});
+        });
+
+        // post the data
+        post_req.write(post_data);
+        post_req.end();
+        res.send({'content':content});
   },
 
   changeState : function (req,res) {
